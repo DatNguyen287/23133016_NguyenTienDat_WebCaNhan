@@ -1,7 +1,7 @@
 <properties>
     <!-- Kết nối DB -->
     <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-    <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db.xuuvoyvmmarxpgyrkxsj.supabase.co:5432/postgres?sslmode=require"/>
+    <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db.xuuvoyvmmarxpgyrkxsj.supabase.co:6543/postgres?sslmode=require"/>
     <property name="jakarta.persistence.jdbc.user" value="postgres.xuuvoyvmmarxpgyrkxsj"/>
     <property name="jakarta.persistence.jdbc.password" value="Dat2782005@"/>
 
@@ -12,4 +12,5 @@
     <!-- Logging để thấy SQL sinh ra -->
     <property name="eclipselink.logging.level" value="FINE"/>
     <property name="eclipselink.logging.parameters" value="true"/>
+
 </properties>
