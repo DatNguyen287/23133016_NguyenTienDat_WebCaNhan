@@ -1,16 +1,37 @@
-<properties>
-    <!-- Kết nối DB -->
-    <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-    <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db.xuuvoyvmmarxpgyrkxsj.supabase.co:6543/postgres?sslmode=require"/>
-    <property name="jakarta.persistence.jdbc.user" value="postgres.xuuvoyvmmarxpgyrkxsj"/>
-    <property name="jakarta.persistence.jdbc.password" value="Dat2782005@"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
 
-    <!-- DDL auto -->
-    <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
-    <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+    <persistence-unit name="_SupabasePU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>model.Assignment</class>
+        
+        <properties>
+            <!-- Kết nối DB Supabase (Session Pooler - 6543) -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres.xuuvoyvmmarxpgyrkxsj"/>
+            <property name="jakarta.persistence.jdbc.password" value="Dat2782005@"/>
 
-    <!-- Logging để thấy SQL sinh ra -->
-    <property name="eclipselink.logging.level" value="FINE"/>
-    <property name="eclipselink.logging.parameters" value="true"/>
+            <!-- Sinh bảng tự động nếu chưa có -->
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>
 
-</properties>
+            <!-- Logging (log SQL để debug) -->
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+
+            <!-- Connection pool -->
+            <property name="eclipselink.connection-pool.default.initial" value="1"/>
+            <property name="eclipselink.connection-pool.default.min" value="1"/>
+            <property name="eclipselink.connection-pool.default.max" value="5"/>
+
+            <!-- Tránh lỗi prepared statement -->
+            <property name="eclipselink.jdbc.cache-statements" value="false"/>
+            <property name="eclipselink.jdbc.bind-parameters" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
