@@ -7,7 +7,7 @@ public class JpaUtil {
     private static final EntityManagerFactory emf;
 
     static {
-        emf = Persistence.createEntityManagerFactory("myPU"); 
+        emf = Persistence.createEntityManagerFactory("SupabasePU"); 
     }
 
     public static EntityManagerFactory getEntityManagerFactory() {
