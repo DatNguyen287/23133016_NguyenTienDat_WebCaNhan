@@ -59,14 +59,24 @@ public class Portfolio extends HttpServlet {
         assignmentService.delete(id);
         response.sendRedirect(request.getContextPath() + "/");
     }
+    
+    private String sanitizeInput(String input) {
+        if (input == null) return null;
+        return input
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll("\"", "&quot;")
+                .replaceAll("'", "&#39;");
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8"); // tránh lỗi tiếng Việt
         String idParam = request.getParameter("id");
-        String name = request.getParameter("assignmentName");
-        String link = request.getParameter("assignmentLink");
+        String name = sanitizeInput(request.getParameter("assignmentName"));
+        String link = sanitizeInput(request.getParameter("assignmentLink"));
 
         System.out.println("DEBUG: Processing form - Name: " + name + ", Link: " + link + ", ID: " + idParam);
         
